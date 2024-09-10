@@ -11,9 +11,6 @@ import ToastService from 'primevue/toastservice';
 import router from './router'
 import '/node_modules/primeflex/primeflex.css';
 
-// import App from './views/Login/LoginComponent.vue'
-
-
 const app = createApp(App);
 app.use(PrimeVue);
 app.use(ToastService);

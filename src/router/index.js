@@ -19,12 +19,17 @@ const router = createRouter({
     {
       path: "/login",
       name: "login",
-      component: () => import('../views/Login/LoginComponent.vue'),
+      component: () => import('../views/PaginaPrincipal/LoginComponent.vue'),
     },
     {
-      path: "/registro-cliente",
-      name: "registro-cliente",
-      component: () => import('../views/RegistroCliente/RegistroClienteComponent.vue'),
+      path: "/registro",
+      name: "registro",
+      component: () => import('../views/PaginaPrincipal/RegistroClienteComponent.vue'),
+    },
+    {
+      path: "/contacto",
+      name: "contacto",
+      component: () => import('../views/PaginaPrincipal/Contacto.vue'),
     }
   ]
 });

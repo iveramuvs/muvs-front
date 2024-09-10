@@ -49,11 +49,15 @@
                 </template>
                 <template #end>
                     <div class="flex items-center gap-2">
-                        <Button label="Contacto" text plain />
-                        <Button label="Blog" text plain />
-                        <Button label="Registrarse" text plain />                        
                         <div>
-                            <router-link to="/login"> <Button class="btnlogin green" label="Iniciar Sesión" severity="contrast" size="small" /></router-link>
+                            <router-link to="/contacto"> <Button label="Contacto" text plain /></router-link>
+                        </div> 
+                        <Button label="Blog" text plain />
+                        <div>
+                            <router-link to="/registro"> <Button label="Registrarse" text plain /></router-link>
+                        </div>                
+                        <div>
+                            <router-link to="/login"> <Button class="btnlogin green" label="Iniciar Sesión"  size="small" /></router-link>
                         </div>
                     </div>
                 </template>
@@ -196,7 +200,6 @@ header {
     margin-right: auto;
     margin-left: auto;
 }
-
 
 header .navbar-brand {
     margin-left: 34px;
@@ -793,10 +796,7 @@ img.hero-banner-left-effect {
     width: 100%;
 }
 
-/* .move-fridge-wrapper {
-    display: flex;
-    flex-wrap: wrap;
-} */
+
 .move-fridge-brand-imges {
     max-width: 400px;
     display: flex;
