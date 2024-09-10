@@ -1,7 +1,4 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import InicioComponent from '../views/App.vue'
-import LoginComponent from '../views/Login/LoginComponent.vue'
-import RegistroClienteComponent from '../views/RegistroCliente/RegistroClienteComponent.vue'
 
 const router = createRouter({
   history: createWebHistory(),
@@ -9,17 +6,25 @@ const router = createRouter({
     {
       path: "/",
       name: "",
-      component: InicioComponent
+      component: () => import('../views/Layouts/Home.vue'),
+      children: [
+        {
+          path: '/',
+          name: 'home',
+          component: () => import('../views/PaginaPrincipal/paginaprincipalcomponent.vue')
+        }
+      ]
+  
     },
     {
       path: "/login",
       name: "login",
-      component: LoginComponent
+      component: () => import('../views/Login/LoginComponent.vue'),
     },
     {
       path: "/registro-cliente",
       name: "registro-cliente",
-      component: RegistroClienteComponent
+      component: () => import('../views/RegistroCliente/RegistroClienteComponent.vue'),
     }
   ]
 });
