@@ -1,13 +1,14 @@
 <template>
 
     <section>
-        <div class="hero-section-login">
-            <div class="container-login">
-                <div class="left">
-                    <img src="/src/assets/images/login-bg.png">
-                </div>
-                <div class="right">
-                    <div class="login-form">
+        <div class="hero-section-login1">
+            <div class="container-login1">
+                <div class="grid grid-nogutter">
+                    <div class="col col-12 lg:col-6 md:col-12 left">
+                        <img src="/src/assets/images/login-bg.png">
+                    </div>
+                    <div class="col col-12 lg:col-6 md:col-12 right ">
+                        <div class="login-form">
                         <div class="div_centrado">
                             <svg xmlns="http://www.w3.org/2000/svg" width="250" height="auto" viewBox="0 0 135 33"
                                 fill="none">
@@ -50,7 +51,7 @@
                                 </defs>
                             </svg>
 
-                            <div  class="separator">
+                            <div class="separator">
                                 <h2>Inicia sesión en tu cuenta</h2>
                             </div>
                             <div class="separator">
@@ -65,8 +66,9 @@
 
                         </div>
                     </div>
-
+                    </div>
                 </div>
+                
             </div>
         </div>
     </section>
@@ -86,6 +88,7 @@ export default {
 </script>
 
 <style>
+
 body {
     overflow-x: hidden;
     color: var(--text-color);
@@ -103,153 +106,6 @@ body {
     overflow: hidden;
     margin-top: 0;
     background-color: #ffffff;
-}
-
-@media (min-width: 1600px) {
-    .container {
-        max-width: 1560px;
-    }
-
-    .freight-list-requested ul button {
-        padding: 14px 10px;
-    }
-
-    .freight-list-requested ul button span {
-        font-size: 16px;
-    }
-}
-
-@media screen and (max-width:1440px) {
-    /* img.hero-banner-truck {
-        position: absolute;
-        bottom: -19px;
-        left: -114px;
-    } */
-}
-
-@media screen and (max-width:1199px) {
-    /* img.hero-banner-truck{
-        display: none;
-    } */
-
-}
-
-@media screen and (max-width:992px) {
-    .laptop-img-box {
-        width: 100%
-    }
-
-    header {
-        margin-bottom: 200px;
-    }
-
-    .hero-banner-truck {
-        left: -20%;
-    }
-
-    img.road-img-vector {
-        left: -20%
-    }
-
-    .managment-platform-section .container:before {
-        content: "";
-        filter: blur(28px);
-    }
-
-    .navbar-menus {
-        display: flex;
-        /* justify-content: flex-end; */
-        width: calc(100% - 20px);
-        background-color: #ffffff;
-        position: absolute;
-        left: 10px;
-        top: 89px;
-        border-radius: 20px;
-        padding: 20px;
-    }
-
-    #navbarNavAltMarkup li.nav-item {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        border-bottom: 1px dashed lightgrey;
-    }
-
-    #navbarNavAltMarkup li.nav-item:last-child {
-        border-bottom: none
-    }
-
-    #navbarNavAltMarkup {
-        padding: 0 10px;
-        background-color: #eff6fa;
-    }
-
-    .navbar-nav .nav-link:last-child {
-        margin: 10px 0;
-    }
-
-    .navbar-nav {
-        margin: 0 auto;
-        width: 100%;
-    }
-
-    .navbar-expand-lg .navbar-nav .nav-link {
-        text-align: left;
-        margin: 10px 0;
-    }
-
-    .navbar-menus a {
-        color: #141718;
-        margin-right: 0px;
-        font-family: var(--font-medium);
-    }
-
-    section.login-page-wrapper {
-        height: auto;
-        overflow: initial;
-        min-height: 800px;
-    }
-
-    .left-login-page {
-        display: none
-    }
-
-    .right-login-page {
-        min-height: 750px;
-        padding: 30px;
-        height: 100vh;
-    }
-
-    .laptop-img-box img {
-        display: block;
-    }
-}
-
-@media screen and (max-width:767px) {
-    .left {
-        display: none;
-    }
-
-    .hero-section-login {
-        height: 650px
-    }
-}
-
-@media screen and (max-width:575px) {
-    .hero-section-login {
-        min-height: 100vh;
-    }
-
-    .hero-section-login>.container {
-        height: 100%
-    }
-
-    .hero-section-login .hero-banner-wrapper {
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        gap: 6%;
-    }
 }
 
 .container-login {
@@ -313,6 +169,18 @@ h2 {
 
 .separator{
 margin-bottom: 35px;
+}
+
+@media screen and (max-width:990px) {
+    .left {
+        display: none;
+    }
+
+    h2 {
+        margin-top: 30px;
+    font-size: 30px;
+}
+
 }
 
 </style>
