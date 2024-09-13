@@ -53,21 +53,42 @@
                 <h3 class="text-2xl font-bold text-900 text-center mb-4">Crea tu cuenta de MUVS</h3>
               </template>
               <template #content>
-                <form @submit.prevent="submitForm" class="flex flex-column gap-4">
+                <!-- <form @submit.prevent="submitForm" class="flex flex-column gap-4">
                   <span v-for="field in formFields" :key="field.id" class="p-float-label">
                     <InputText 
                       :id="field.id" 
                       v-model="formData[field.id]" 
                       :type="field.type" 
                       class="w-full"
+                      required
+                      :maxlength="field.id === 'phone' ? 10 : undefined"
+                      @input="field.id === 'phone' ? validatePhone($event) : null"
                     />
                     <label :for="field.id">{{ field.placeholder }}</label>
                   </span>
                   <Button type="submit" label="Crear cuenta" class="w-full bg-green-500 hover:bg-green-600 border-none" />
+                </form> -->
+                <form @submit.prevent="submitForm" class="flex flex-column gap-4">
+                  <div v-for="field in formFields" :key="field.id" class="flex flex-column">
+                    <label :for="field.id" class="mb-2 font-medium text-900">{{ field.placeholder }}</label>
+                    <InputText 
+                      :id="field.id" 
+                      v-model="formData[field.id]" 
+                      :type="field.type" 
+                      class="w-full"
+                      required
+                      :placeholder="field.placeholder"
+                      :maxlength="field.id === 'phone' ? 10 : undefined"
+                      @input="field.id === 'phone' ? validatePhone($event) : null"
+                    />
+                  </div>
+                  <Button type="submit" label="Crear cuenta" class="w-full bg-green-500 hover:bg-green-600 border-none" />
                 </form>
                 <p class="text-center text-sm mt-4">
                   ¿Ya tienes una cuenta?
-                  <a href="#" class="text-green-500 font-bold hover:underline">Acceso</a>
+                  <router-link to="/login" custom v-slot="{ navigate, href }">
+                  <a :href="href" class="text-green-500 font-bold hover:underline">Acceso</a>
+                </router-link>
                 </p>
               </template>
             </Card>
@@ -109,6 +130,7 @@ import Card from 'primevue/card';
 import InputText from 'primevue/inputtext';
 import Button from 'primevue/button';
 import Toolbar from 'primevue/toolbar';
+import router from '@/router';
 
 const benefits = [
   "Accede a una amplia variedad de trabajos de transporte disponibles en nuestra plataforma.",
@@ -119,21 +141,27 @@ const benefits = [
 ];
 
 const formFields = [
-  { id: 'fullName', type: 'text', placeholder: 'Nombre y apellido' },
-  { id: 'email', type: 'email', placeholder: 'Correo electrónico' },
-  { id: 'phone', type: 'tel', placeholder: 'Número de teléfono' },
-  { id: 'rtn', type: 'text', placeholder: 'RTN de la empresa' },
-  { id: 'company', type: 'text', placeholder: 'Nombre de la empresa' },
-  { id: 'password', type: 'password', placeholder: 'Contraseña' },
-  { id: 'confirmPassword', type: 'password', placeholder: 'Confirmar contraseña' },
+  { id: 'fullName', type: 'text', placeholder: 'Ingrese su nombre completo' },
+  { id: 'email', type: 'email', placeholder: 'Ingrese su correo electrónico' },
+  { id: 'phone', type: 'tel', placeholder: 'Ingrese su número de teléfono' },
+  { id: 'rtn', type: 'text', placeholder: 'Ingrese el RTN de la empresa' },
+  { id: 'company', type: 'text', placeholder: 'Ingrese el nombre de la empresa' },
+  { id: 'password', type: 'password', placeholder: 'Ingrese su contraseña' },
+  { id: 'confirmPassword', type: 'password', placeholder: 'Confirme contraseña' },
 ];
 
 const formData = ref({});
 
 const submitForm = () => {
-  console.log('Form submitted:', formData.value);
+  router.push('/home');
+  // console.log('Form submitted:', formData.value);
   // Aquí iría la lógica para enviar los datos del formulario
 };
+
+const validatePhone = (event) => {
+  formData.value.phone = event.target.value.replace(/\D/g, '').slice(0, 10);
+};
+
 </script>
 
 <style scoped>
@@ -239,4 +267,12 @@ footer .social-media-logo a {
 footer .social-media-logo a:hover {
   color: #39A935;
 }
+
+:deep(.p-float-label) {
+  /* Eliminar cualquier estilo relacionado con p-float-label */
+}
+
+/* label {
+  color: #495057;
+} */
 </style>

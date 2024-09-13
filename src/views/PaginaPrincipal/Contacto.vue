@@ -34,6 +34,9 @@
             <div class="lg:w-6 flex flex-column gap-1 p-4">
               <img class="logo-muvs mb-2" src="/src/assets/images/logo-muvs.png" alt="MUVS Logo">
               <div class="flex flex-column bg-white-alpha-70 p-3 border-round-lg mb-2">
+                <!-- <h2 class="text-4xl font-bold text-900 leading-tight mb-2">
+                  Descubre cómo MUVS puede ayudarte. Estos son algunos ejemplos de lo que podemos hacer por ti:
+              </h2> -->
                 <p class="text-2xl font-semibold text-700 m-0" style="font-style: italic;">Descubre cómo MUVS puede ayudarte. Estos son algunos ejemplos de lo que podemos hacer por ti:</p>
               </div>
               <ul class="flex flex-column gap-2 list-none p-0 m-0">
@@ -63,6 +66,9 @@
                         :type="field.type" 
                         :placeholder="field.placeholder"
                         class="w-full"
+                        required
+                        :maxlength="field.id === 'phone' ? 10 : undefined"
+                      @input="field.id === 'phone' ? validatePhone($event) : null"
                       />
                       <Textarea
                         v-else
@@ -71,6 +77,7 @@
                         :placeholder="field.placeholder"
                         rows="5"
                         class="w-full"
+                        required
                       />
                     </div>
                     <Button type="submit" label="Enviar mensaje" class="w-full bg-green-500 hover:bg-green-600 border-none" />
@@ -138,6 +145,11 @@
     console.log('Form submitted:', formData.value);
     // Aquí iría la lógica para enviar los datos del formulario
   };
+
+  const validatePhone = (event) => {
+  formData.value.phone = event.target.value.replace(/\D/g, '').slice(0, 10);
+};
+
   </script>
   
   <style scoped>

@@ -61,7 +61,7 @@
                                 <InputText type="password" placeholder="Contraseña" />
                             </div>
                             <div class="separator">
-                                <Button class="btnlogin green" label="Continuar" size="large" />
+                                <Button class="btnlogin green" label="Continuar" size="large" @click="iniciarSesion" />
                             </div>
 
                         </div>
@@ -77,12 +77,28 @@
 <script>
 import InputText from 'primevue/inputtext';
 import Button from 'primevue/button';
+import router from '@/router';
+
 
 export default {
-    components: {
-        InputText,
-        Button
+  components: {
+    InputText,
+    Button
+  },
+  data() {
+    return {
+      usuario: '',
+      contrasena: ''
     }
+  },
+  methods: {
+    iniciarSesion() {
+        router.push('/home');
+      // Aquí puedes agregar la lógica para iniciar sesión
+      console.log('Iniciando sesión con:', this.usuario, this.contrasena);
+      // Implementa la lógica de autenticación aquí
+    }
+  }
 };
 
 </script>

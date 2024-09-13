@@ -9,12 +9,11 @@ const router = createRouter({
       component: () => import('../views/Layouts/Home.vue'),
       children: [
         {
-          path: '/',
-          name: 'home',
+          path: '',
+          name: 'index',
           component: () => import('../views/PaginaPrincipal/paginaprincipalcomponent.vue')
         }
       ]
-  
     },
     {
       path: "/login",
@@ -30,6 +29,18 @@ const router = createRouter({
       path: "/contacto",
       name: "contacto",
       component: () => import('../views/PaginaPrincipal/Contacto.vue'),
+    },
+    {
+      path: "/home",
+      name: "home",
+      component: () => import('../views/Layouts/LayoutApp.vue'),
+      children: [
+        {
+          path: '',
+          name: 'dashboard',
+          component: () => import('../views/Dashboard/Dahsboard.vue'),
+        }
+      ]
     }
   ]
 });
