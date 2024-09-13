@@ -24,11 +24,11 @@
       <aside class="layout-sidebar" :class="{ 'layout-sidebar-collapsed': sidebarCollapsed }">
         <div class="layout-menu">
           <ul class="list-none p-0 m-0">
-            <li v-for="(item, index) in menuItems" :key="index" class="mb-1">
+            <li v-for="(item, index) in menuItems" :key="index" class="menu-item">
               <Button 
                 :icon="item.icon" 
                 :label="sidebarCollapsed ? '' : item.label" 
-                class="p-button-text p-button-plain w-full sidebar-button icon-change"
+                class="p-button-text p-button-plain w-full sidebar-button"
                 :class="[
                   sidebarCollapsed ? 'justify-content-center' : 'justify-content-start',
                   { 'menu-item-active': item.route === currentRoute }
@@ -41,28 +41,7 @@
       </aside>
 
       <main class="layout-main p-4" :class="{ 'layout-main-expanded': sidebarCollapsed }">
-        <div class="content-header mb-4">
-          <h1 class="text-3xl font-bold text-900">{{ currentPageTitle }}</h1>
-        </div>
-        <div class="content-body">
-          <div class="datatable-container p-4 bg-white border-round-lg">
-            <div class="datatable-header flex justify-content-between align-items-center mb-4">
-              <h2 class="text-xl font-semibold text-700">Lista de elementos</h2>
-              <div>
-                <Button label="Agregar" icon="pi pi-plus" class="p-button-success mr-2" />
-                <Button label="Exportar" icon="pi pi-download" class="p-button-secondary" />
-              </div>
-            </div>
-            <div class="datatable-content">
-              <!-- Aquí irá la datatable -->
-              <p class="text-500">La datatable se cargará en esta área.</p>
-            </div>
-            <div class="datatable-footer mt-4 flex justify-content-end">
-              <!-- Aquí irá la paginación -->
-              <p class="text-500">Controles de paginación irán aquí.</p>
-            </div>
-          </div>
-        </div>
+
       </main>
     </div>
   </div>
@@ -117,7 +96,7 @@ export default {
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
 
 .layout-wrapper {
   display: flex;
@@ -140,7 +119,7 @@ export default {
 }
 
 .logo-container {
-  width: 250px;
+  width: 220px;
   height: 60px;
   display: flex;
   align-items: center;
@@ -151,7 +130,7 @@ export default {
 }
 
 .logo-collapsed {
-  width: 80px;
+  width: 70px;
   justify-content: center;
   padding-left: 0;
 }
@@ -172,10 +151,6 @@ export default {
   max-width: 25px;
 }
 
-.layout-topbar .p-button-plain {
-  color: #495057;
-}
-
 .layout-content {
   display: flex;
   flex-grow: 1;
@@ -183,7 +158,7 @@ export default {
 }
 
 .layout-sidebar {
-  width: 250px;
+  width: 220px;
   background-color: #ffffff;
   border-right: 1px solid #E4E7EB;
   height: calc(100vh - 60px);
@@ -197,19 +172,19 @@ export default {
 }
 
 .layout-sidebar-collapsed {
-  width: 80px;
+  width: 70px;
 }
 
 .layout-main {
   flex-grow: 1;
-  margin-left: 250px;
+  margin-left: 220px;
   padding: 20px;
   transition: all 0.3s ease-in-out;
   background-color: #F8F9FA;
 }
 
 .layout-main-expanded {
-  margin-left: 80px;
+  margin-left: 70px;
 }
 
 .sidebar-button {
@@ -221,54 +196,40 @@ export default {
   align-items: center;
   justify-content: flex-start;
   text-align: left;
-  height: 64px;
+  height: 48px;
+  margin-bottom: 0.5rem;
 }
 
 .sidebar-button .p-button-icon {
-  font-size: 24px !important;
-  margin-right: 1rem;
-  width: 40px;
-  height: 40px;
+  font-size: 1.25rem !important;
+  margin-right: 0.75rem;
+  width: 24px;
+  height: 24px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.sidebar-button .p-button-icon::before {
-  font-size: 24px !important;
-}
-
 .sidebar-button .p-button-label {
   flex-grow: 1;
-  font-weight: 500;
-  font-size: 1rem;
+  font-weight: 400;
+  font-size: 0.875rem;
 }
 
 .sidebar-button:hover {
-  background-color: #E8F5E9;
-  color: #39A935;
+  background-color: #d5eeda;
 }
 
 .menu-item-active {
-  background-color: #E3F2FD;
-  color: #1976D2;
-  font-weight: 600;
-}
-
-.menu-item-active::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 4px;
-  background-color: #1976D2;
+  background-color: #E8F5E9 !important;
+  color: #39A935 !important;
+  font-weight: 500;
 }
 
 .layout-sidebar-collapsed .sidebar-button {
   padding: 0;
   justify-content: center;
-  height: 64px;
+  height: 48px;
 }
 
 .layout-sidebar-collapsed .sidebar-button .p-button-label {
@@ -277,11 +238,7 @@ export default {
 
 .layout-sidebar-collapsed .sidebar-button .p-button-icon {
   margin-right: 0;
-  font-size: 24px !important;
-}
-
-.layout-sidebar-collapsed .sidebar-button .p-button-icon::before {
-  font-size: 24px !important;
+  font-size: 1.25rem !important;
 }
 
 .sidebar-toggle-wrapper {
@@ -314,7 +271,7 @@ export default {
 }
 
 .sidebar-toggle .p-button-icon {
-  font-size: 1.2rem;
+  font-size: 1rem;
   color: #ffffff;
 }
 
@@ -336,11 +293,7 @@ export default {
   }
 
   .layout-main-expanded {
-    margin-left: 80px;
+    margin-left: 70px;
   }
-}
-
-.icon-change :deep(.pi) {
-  font-size: 1.5rem;
 }
 </style>
