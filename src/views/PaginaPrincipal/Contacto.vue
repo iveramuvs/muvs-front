@@ -1,7 +1,7 @@
 <template>
     <div class="flex flex-column min-h-screen">
       <!-- Header -->
-      <header class="fixed top-0 left-0 w-full z-5">
+      <header class=" fixedabsolut top-0 left-0 w-full z-5">
         <div class="card bg-transparent">
           <Toolbar class="bg-transparent border-none px-3 py-3 lg:px-6 lg:py-4">
             <template #start>
@@ -155,6 +155,10 @@
   <style scoped>
   @import 'primeflex/primeflex.css';
   
+  .fixedabsolut{
+    position: absolute !important;
+  }
+
   .logo-muvs {
     width: 250px;
     object-fit: contain;

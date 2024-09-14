@@ -166,7 +166,7 @@ import Toast from 'primevue/toast';
 
 <style>
 header {
-    position: fixed;
+    position: absolute;
     z-index: 9999;  
     width: 100%;
 }
