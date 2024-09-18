@@ -28,7 +28,7 @@
               <Button 
                 :icon="item.icon" 
                 :label="sidebarCollapsed ? '' : item.label" 
-                class="p-button-text p-button-plain w-full sidebar-button"
+                class="p-button-text p-button-plain w-full sidebar-button icon-change"
                 :class="[
                   sidebarCollapsed ? 'justify-content-center' : 'justify-content-start',
                   { 'menu-item-active': item.route === currentRoute }
@@ -41,7 +41,7 @@
       </aside>
 
       <main class="layout-main p-4" :class="{ 'layout-main-expanded': sidebarCollapsed }">
-
+        <!-- <RouterView /> -->
       </main>
     </div>
   </div>
@@ -60,7 +60,7 @@ export default {
   setup() {
     const router = useRouter()
     const route = useRoute()
-    const sidebarCollapsed = ref(false)
+    const sidebarCollapsed = ref(true)
 
     const menuItems = ref([
       { icon: 'pi pi-home', label: 'Dashboard', route: '/' },
@@ -97,6 +97,10 @@ export default {
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
+
+.icon-change :deep(.pi) {
+  font-size: 1.3rem;
+}
 
 .layout-wrapper {
   display: flex;

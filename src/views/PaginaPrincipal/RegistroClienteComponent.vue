@@ -70,7 +70,7 @@
                 </form> -->
                 <form @submit.prevent="submitForm" class="flex flex-column gap-4">
                   <div v-for="field in formFields" :key="field.id" class="flex flex-column">
-                    <label :for="field.id" class="mb-2 font-medium text-900">{{ field.placeholder }}</label>
+                    <label :for="field.id" class="mb-2 font-medium text-900">{{ field.label }}</label>
                     <InputText 
                       :id="field.id" 
                       v-model="formData[field.id]" 
@@ -141,13 +141,13 @@ const benefits = [
 ];
 
 const formFields = [
-  { id: 'fullName', type: 'text', placeholder: 'Ingrese su nombre completo' },
-  { id: 'email', type: 'email', placeholder: 'Ingrese su correo electrónico' },
-  { id: 'phone', type: 'tel', placeholder: 'Ingrese su número de teléfono' },
-  { id: 'rtn', type: 'text', placeholder: 'Ingrese el RTN de la empresa' },
-  { id: 'company', type: 'text', placeholder: 'Ingrese el nombre de la empresa' },
-  { id: 'password', type: 'password', placeholder: 'Ingrese su contraseña' },
-  { id: 'confirmPassword', type: 'password', placeholder: 'Confirme contraseña' },
+  { id: 'fullName', type: 'text', label: 'Nombre completo', placeholder: 'Ingrese su nombre completo' },
+  { id: 'email', type: 'email',  label: 'Correo electrónico', placeholder: 'Ingrese su correo electrónico' },
+  { id: 'phone', type: 'tel',  label: 'Número de telefono', placeholder: 'Ingrese su número de teléfono' },
+  { id: 'rtn', type: 'text',   label: 'RTN de la empresa', placeholder: 'Ingrese el RTN de la empresa' },
+  { id: 'company', type: 'text',  label: 'Nombre de la empresa', placeholder: 'Ingrese el nombre de la empresa' },
+  { id: 'password', type: 'password', label: 'Contraseña', placeholder: 'Ingrese su contraseña' },
+  { id: 'confirmPassword', type: 'password', label: 'Confirmar contraseña', placeholder: 'Confirme contraseña' },
 ];
 
 const formData = ref({});
