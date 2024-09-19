@@ -55,10 +55,10 @@
                                 <h2>Inicia sesión en tu cuenta</h2>
                             </div>
                             <div class="separator">
-                                <InputText id="user" value="user" type="text" placeholder="Usuario" />
+                                <InputText id="user"  type="text" placeholder="Usuario" />
                             </div>
                             <div class="separator">
-                                <InputText id="password" value="password" type="password" placeholder="Contraseña" />
+                                <InputText id="password" type="password" placeholder="Contraseña" />
                             </div>
                             <div class="separator">
                                 <Button class="btnlogin green" label="Continuar" size="large" @click="iniciarSesion" />
@@ -99,27 +99,28 @@ export default {
   },
   methods: {
     async iniciarSesion() {
-      try {
-        const response = await axios.post('URL_DE_TU_API/login', {
-          username: this.user,
-          password: this.password
-        });
+        router.push('/home');
+        //   try {
+    //     const response = await axios.post('URL_DE_TU_API/login', {
+    //       username: this.user,
+    //       password: this.password
+    //     });
         
-        if (response.data.success) {
-          // Guardar el token de autenticación si es necesario
-          // localStorage.setItem('token', response.data.token);
+    //     if (response.data.success) {
+    //       // Guardar el token de autenticación si es necesario
+    //       // localStorage.setItem('token', response.data.token);
           
-          this.toast.add({ severity: 'success', summary: 'Éxito', detail: 'Inicio de sesión exitoso', life: 3000 });
+    //       this.toast.add({ severity: 'success', summary: 'Éxito', detail: 'Inicio de sesión exitoso', life: 3000 });
           
-          // Redirigir al usuario a la página principal o dashboard
-          router.push('/dashboard');
-        } else {
-          this.toast.add({ severity: 'error', summary: 'Error', detail: 'Credenciales inválidas', life: 3000 });
-        }
-      } catch (error) {
-        console.error('Error al iniciar sesión:', error);
-        this.toast.add({ severity: 'error', summary: 'Error', detail: 'Hubo un problema al iniciar sesión', life: 3000 });
-      }
+    //       // Redirigir al usuario a la página principal o dashboard
+    //       router.push('/dashboard');
+    //     } else {
+    //       this.toast.add({ severity: 'error', summary: 'Error', detail: 'Credenciales inválidas', life: 3000 });
+    //     }
+    //   } catch (error) {
+    //     console.error('Error al iniciar sesión:', error);
+    //     this.toast.add({ severity: 'error', summary: 'Error', detail: 'Hubo un problema al iniciar sesión', life: 3000 });
+    //   }
     }
   }
 };
