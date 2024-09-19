@@ -1,4 +1,5 @@
 <template>
+  <Toast />
     <div class="flex flex-column min-h-screen">
       <!-- Header -->
       <header class=" fixedabsolut top-0 left-0 w-full z-5">
@@ -14,7 +15,6 @@
                 <router-link to="/contacto" custom v-slot="{ navigate, href }">
                   <Button :href="href" @click="navigate" label="Contacto" class="header-button" />
                 </router-link>
-                <Button label="Blog" class="header-button" />
                 <router-link to="/registro" custom v-slot="{ navigate, href }">
                   <Button :href="href" @click="navigate" label="Registrarse" class="header-button" />
                 </router-link>
@@ -32,7 +32,7 @@
         <div class="container max-w-1200 mx-auto px-3">
           <div class="flex flex-column lg:flex-row align-items-center justify-content-center">
             <div class="lg:w-6 flex flex-column gap-1 p-4">
-              <img class="logo-muvs mb-2" src="/src/assets/images/logo-muvs.png" alt="MUVS Logo">
+              <img class="logo-muvs mb-2 logo-medium" src="/src/assets/images/logo-muvs.png" alt="MUVS Logo">
               <div class="flex flex-column bg-white-alpha-70 p-3 border-round-lg mb-2">
                 <!-- <h2 class="text-4xl font-bold text-900 leading-tight mb-2">
                   Descubre cómo MUVS puede ayudarte. Estos son algunos ejemplos de lo que podemos hacer por ti:
@@ -123,6 +123,11 @@
   import Textarea from 'primevue/textarea';
   import Button from 'primevue/button';
   import Toolbar from 'primevue/toolbar';
+  import { useToast } from 'primevue/usetoast';
+  import Toast from 'primevue/toast';
+  import axios from 'axios';
+
+  const toast = useToast();
   
   const services = [
     { title: 'Demostraciones Personalizadas', description: 'Mostramos cómo nuestras soluciones se adaptan a tu negocio.' },
@@ -139,12 +144,39 @@
     { id: 'message', type: 'textarea', label: 'Mensaje', placeholder: 'Escriba su mensaje aquí' },
   ];
   
-  const formData = ref({});
+  let formData = ref({});
   
-  const submitForm = () => {
-    console.log('Form submitted:', formData.value);
-    // Aquí iría la lógica para enviar los datos del formulario
-  };
+  let submitForm = async () => {
+  try {
+
+    // Construir el objeto JSON con los datos del formulario
+
+    let jsonData = {
+      s_nombre: formData.value.fullName,
+      s_correo: formData.value.email,
+      s_numero: formData.value.phone,
+      s_empresa: formData.value.company,
+      s_mensaje: formData.value.message
+    };
+    // Aquí iría la petición Axios
+    // let response = await axios.post('URL_DE_TU_API', jsonData);
+
+
+
+
+
+
+    // console.log('Respuesta del servidor:', response.data);
+    // Por ahora, solo mostraremos los datos en la consola
+    // console.log('Datos del formulario:', jsonData);
+    // Redirigir al usuario (esto debería hacerse después de una respuesta exitosa del servidor)
+    // router.push('/home');
+
+
+  } catch (error) {
+    toast.add({ severity: 'error', summary: 'Error de conexión', detail: 'Ocurrió un error interno', life: 3000 });
+  }
+};
 
   const validatePhone = (event) => {
   formData.value.phone = event.target.value.replace(/\D/g, '').slice(0, 10);
@@ -154,6 +186,13 @@
   
   <style scoped>
   @import 'primeflex/primeflex.css';
+
+  @media screen and (max-width: 992px){
+  .logo-medium{
+    display: none;
+  }
+
+  }
   
   .fixedabsolut{
     position: absolute !important;

@@ -1,5 +1,5 @@
 <template>
-    <h1>ASDÑFKJJHASLKJFDDHASLKJFHASLKDJH</h1>
+    <h1>DASHBOARD</h1>
 </template>
 
 <script setup>

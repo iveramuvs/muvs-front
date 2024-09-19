@@ -13,7 +13,6 @@
                         <div>
                             <router-link to="/contacto"> <Button label="Contacto" text plain /></router-link>
                         </div> 
-                        <Button label="Blog" text plain />
                         <div>
                             <router-link to="/registro"> <Button label="Registrarse" text plain /></router-link>
                         </div>                

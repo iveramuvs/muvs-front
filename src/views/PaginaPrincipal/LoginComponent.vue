@@ -1,5 +1,5 @@
 <template>
-
+    <Toast />
     <section>
         <div class="hero-section-login1">
             <div class="container-login1">
@@ -55,10 +55,10 @@
                                 <h2>Inicia sesión en tu cuenta</h2>
                             </div>
                             <div class="separator">
-                                <InputText type="text" placeholder="Usuario" />
+                                <InputText id="user" value="user" type="text" placeholder="Usuario" />
                             </div>
                             <div class="separator">
-                                <InputText type="password" placeholder="Contraseña" />
+                                <InputText id="password" value="password" type="password" placeholder="Contraseña" />
                             </div>
                             <div class="separator">
                                 <Button class="btnlogin green" label="Continuar" size="large" @click="iniciarSesion" />
@@ -78,25 +78,48 @@
 import InputText from 'primevue/inputtext';
 import Button from 'primevue/button';
 import router from '@/router';
-
-
+import { useToast } from 'primevue/usetoast';
+import Toast from 'primevue/toast';
+import axios from 'axios';
 export default {
   components: {
     InputText,
-    Button
+    Button,
+    Toast
   },
   data() {
     return {
-      usuario: '',
-      contrasena: ''
-    }
+      user: '',
+      password: ''
+    }   
+  },
+  setup() {
+    const toast = useToast();
+    return { toast }
   },
   methods: {
-    iniciarSesion() {
-        router.push('/home');
-      // Aquí puedes agregar la lógica para iniciar sesión
-      console.log('Iniciando sesión con:', this.usuario, this.contrasena);
-      // Implementa la lógica de autenticación aquí
+    async iniciarSesion() {
+      try {
+        const response = await axios.post('URL_DE_TU_API/login', {
+          username: this.user,
+          password: this.password
+        });
+        
+        if (response.data.success) {
+          // Guardar el token de autenticación si es necesario
+          // localStorage.setItem('token', response.data.token);
+          
+          this.toast.add({ severity: 'success', summary: 'Éxito', detail: 'Inicio de sesión exitoso', life: 3000 });
+          
+          // Redirigir al usuario a la página principal o dashboard
+          router.push('/dashboard');
+        } else {
+          this.toast.add({ severity: 'error', summary: 'Error', detail: 'Credenciales inválidas', life: 3000 });
+        }
+      } catch (error) {
+        console.error('Error al iniciar sesión:', error);
+        this.toast.add({ severity: 'error', summary: 'Error', detail: 'Hubo un problema al iniciar sesión', life: 3000 });
+      }
     }
   }
 };

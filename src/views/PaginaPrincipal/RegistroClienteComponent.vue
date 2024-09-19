@@ -1,4 +1,5 @@
 <template>
+    <Toast />
   <div class="flex flex-column min-h-screen">
     <!-- Header -->
     <header class=" fixedabsolut top-0 left-0 w-full z-5">
@@ -14,7 +15,6 @@
               <router-link to="/contacto" custom v-slot="{ navigate, href }">
                 <Button :href="href" @click="navigate" label="Contacto" class="header-button" />
               </router-link>
-              <Button label="Blog" class="header-button" />
               <router-link to="/registro" custom v-slot="{ navigate, href }">
                 <Button :href="href" @click="navigate" label="Registrarse" class="header-button" />
               </router-link>
@@ -32,7 +32,7 @@
       <div class="container">
         <div class="flex flex-column lg:flex-row align-items-center justify-content-center">
           <div class="lg:w-6 flex flex-column gap-2 p-4">
-            <img class="logo-muvs" src="/src/assets/images/logo-muvs.png" alt="MUVS Logo">
+            <img class="logo-muvs logo-medium" src="/src/assets/images/logo-muvs.png" alt="MUVS Logo">
             <div class="flex flex-column ">
               <h2 class="text-4xl font-bold text-900 leading-tight mb-2">
                 Contrata nuestro servicio de transporte impulsado por tecnología
@@ -131,6 +131,11 @@ import InputText from 'primevue/inputtext';
 import Button from 'primevue/button';
 import Toolbar from 'primevue/toolbar';
 import router from '@/router';
+import { useToast } from 'primevue/usetoast';
+import Toast from 'primevue/toast';
+import axios from 'axios';
+
+const toast = useToast();
 
 const benefits = [
   "Accede a una amplia variedad de trabajos de transporte disponibles en nuestra plataforma.",
@@ -152,10 +157,33 @@ const formFields = [
 
 const formData = ref({});
 
-const submitForm = () => {
-  router.push('/home');
-  // console.log('Form submitted:', formData.value);
-  // Aquí iría la lógica para enviar los datos del formulario
+const submitForm = async () => {
+  try {
+    // Construir el objeto JSON con los datos del formulario
+    let jsonData = {
+      s_nombre: formData.value.fullName,
+      s_correo: formData.value.email,
+      s_numero: formData.value.phone,
+      s_empresa: formData.value.rtn,
+      s_nombre_empresa: formData.value.company,
+      s_mensaje: formData.value.password
+    };
+
+    // Aquí iría la petición Axios
+    // const response = await axios.post('URL_DE_TU_API', jsonData);
+
+
+
+
+    
+    // console.log('Respuesta del servidor:', response.data);
+    // Por ahora, solo mostraremos los datos en la consola
+    // console.log('Datos del formulario:', jsonData);
+    // Redirigir al usuario (esto debería hacerse después de una respuesta exitosa del servidor)
+    // router.push('/home');
+  } catch (error) {
+    toast.add({ severity: 'error', summary: 'Error de conexión', detail: 'Ocurrió un error interno', life: 3000 });
+  }
 };
 
 const validatePhone = (event) => {
@@ -227,8 +255,16 @@ header :deep(.p-toolbar) {
   border-color: #39A935;
 }
 
+@media screen and (max-width: 992px){
+  .logo-medium{
+    display: none;
+  }
+
+}
+
 /* Estilos responsivos */
 @media screen and (max-width: 768px) {
+
   header :deep(.p-toolbar) {
     flex-direction: column;
     align-items: center;
