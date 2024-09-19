@@ -16,6 +16,18 @@ const router = createRouter({
       ]
     },
     {
+      path: "/home",
+      name: "home",
+      component: () => import('../views/Layouts/LayoutApp.vue'),
+      children: [
+        {
+          path: '',
+          name: 'dashboard',
+          component: () => import('../views/Dashboard/Dahsboard.vue'),
+        }
+      ]
+    },
+    {
       path: "/login",
       name: "login",
       component: () => import('../views/PaginaPrincipal/LoginComponent.vue'),
@@ -31,16 +43,29 @@ const router = createRouter({
       component: () => import('../views/PaginaPrincipal/Contacto.vue'),
     },
     {
-      path: "/home",
-      name: "home",
-      component: () => import('../views/Layouts/LayoutApp.vue'),
-      children: [
-        {
-          path: '',
-          name: 'dashboard',
-          component: () => import('../views/Dashboard/Dahsboard.vue'),
-        }
-      ]
+      path: "/clientes",
+      name: "clientes",
+      component: () => import('../views/Clientes/Clientes.vue'),
+    },
+    {
+      path: "/facturas",
+      name: "facturas",
+      component: () => import('../views/Facturas/Facturas.vue'),
+    },
+    // {
+    //   path: "/motoristas",
+    //   name: "motoristas",
+    //   component: () => import('../views/Motoristas/Motoristas.vue'),
+    // },
+    // {
+    //   path: "/equipo",
+    //   name: "equipo",
+    //   component: () => import('../views/Equipo/Equipo.vue'),
+    // },
+    {
+      path: "/clientes",
+      name: "clientes",
+      component: () => import('../views/Movimientos/Movimientos.vue'),
     }
   ]
 });
