@@ -25,6 +25,7 @@
         <div class="layout-menu">
           <ul class="list-none p-0 m-0">
             <li v-for="(item, index) in menuItems" :key="index" class="menu-item">
+              <router-link :to="item.route" style="text-decoration: none;">
               <Button 
                 :icon="item.icon" 
                 :label="sidebarCollapsed ? '' : item.label" 
@@ -33,15 +34,16 @@
                   sidebarCollapsed ? 'justify-content-center' : 'justify-content-start',
                   { 'menu-item-active': item.route === currentRoute }
                 ]"
-                @click="navigateTo(item.route)"
+        
               />
+            </router-link>
             </li>
           </ul>
         </div>
       </aside>
 
       <main class="layout-main p-4" :class="{ 'layout-main-expanded': sidebarCollapsed }">
-        <!-- <RouterView /> -->
+        <RouterView />
       </main>
     </div>
   </div>
@@ -60,13 +62,16 @@ export default {
   setup() {
     const router = useRouter()
     const route = useRoute()
-    const sidebarCollapsed = ref(true)
+    const sidebarCollapsed = ref(false)
 
     const menuItems = ref([
       { icon: 'pi pi-home', label: 'Dashboard', route: '/' },
-      { icon: 'pi pi-users', label: 'Equipo', route: '/team' },
-      { icon: 'pi pi-calendar', label: 'Calendario', route: '/calendar' },
-      { icon: 'pi pi-cog', label: 'Configuración', route: '/settings' },
+      { icon: 'pi pi-users', label: 'Clientes', route: '/clientes' },
+      { icon: 'pi pi-sitemap', label: 'Equipo', route: '/facturas' },
+      { icon: 'pi pi-car', label: 'Motoristas', route: '/facturas' },
+      { icon: 'pi pi-car', label: 'Movimientos', route: '/movimientos' },
+      { icon: 'pi pi-folder-open', label: 'Facturas', route: '/facturas' },
+      { icon: 'pi pi-map', label: 'Ubicaciones', route: '/ubicaciones' },
     ])
 
     const currentRoute = computed(() => route.path)

@@ -24,6 +24,21 @@ const router = createRouter({
           path: '',
           name: 'dashboard',
           component: () => import('../views/Dashboard/Dahsboard.vue'),
+        },
+        {
+          path: "/ubicaciones",
+          name: "",
+          component: () => import('../views/Ubicaciones/Ubicaciones.vue'),
+        },
+        {
+          path: "/clientes",
+          name: "clientes",
+          component: () => import('../views/Clientes/Clientes.vue'),
+        },
+        {
+          path: "/facturas",
+          name: "facturas",
+          component: () => import('../views/Facturas/Facturas.vue'),
         }
       ]
     },
@@ -41,17 +56,7 @@ const router = createRouter({
       path: "/contacto",
       name: "contacto",
       component: () => import('../views/PaginaPrincipal/Contacto.vue'),
-    },
-    {
-      path: "/clientes",
-      name: "clientes",
-      component: () => import('../views/Clientes/Clientes.vue'),
-    },
-    {
-      path: "/facturas",
-      name: "facturas",
-      component: () => import('../views/Facturas/Facturas.vue'),
-    },
+    }
     // {
     //   path: "/motoristas",
     //   name: "motoristas",
@@ -62,11 +67,7 @@ const router = createRouter({
     //   name: "equipo",
     //   component: () => import('../views/Equipo/Equipo.vue'),
     // },
-    {
-      path: "/clientes",
-      name: "clientes",
-      component: () => import('../views/Movimientos/Movimientos.vue'),
-    }
+
   ]
 });
 

@@ -3,7 +3,7 @@
       <Toolbar class="mb-4">
         <template #start>
           <div class="my-2">
-            <h2>Clientes</h2 >
+            <h2>Ubicaciones</h2 >
           </div>
         </template>
         <template #end>
